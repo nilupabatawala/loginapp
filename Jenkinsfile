@@ -11,7 +11,7 @@ node {
         Assuming Dockerfile is at the root of the project directory. 
         Replace 'your-application' with the name of your application/image.
         */
-        sh 'docker build -t loginapp:${env.BUILD_ID}'
+        sh 'docker build -t loginapp:${env.BUILD_ID} .'
     }
 
     stage('Login to AWS ECR') {
