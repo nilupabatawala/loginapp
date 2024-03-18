@@ -52,7 +52,6 @@ node {
 
     stage('Deploy to EKS') {
 
-        sh "sed -i 's/\\\$IMG_TAG/${env.BUILD_ID}/g' manifests/deployment-file.yaml"
          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_credentials']]) {
              withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                 sh "kubectl apply -f manifests/deployment.yaml"
