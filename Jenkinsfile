@@ -27,18 +27,18 @@ node {
         /* 
         Replace 'your-aws-account-id.dkr.ecr.your-region.amazonaws.com/your-repo-name' with your ECR repository path.
         */
-        //def ecrRepository = '424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp'
+        def ecrRepository = '424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp'
         //def imageTag = "${ecrRepository}:${env.BUILD_ID}"
         //app.tag(imageTag).push()
 
-        sh "docker tag loginapp:${env.BUILD_ID} 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}"
+        sh "docker tag loginapp:${env.BUILD_ID} ${ecrRepository}:${env.BUILD_ID}"
         sh "docker push 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}"
         }
    
 
     stage('Clean Up') {
         // Clean up Docker images to prevent the Jenkins node from running out of space
-        sh "docker rmi \$(docker images -q loginapp:${env.BUILD_ID})"
-        sh "docker rmi \$(docker images -q ${ecrRepository}:${env.BUILD_ID})"
+        sh "docker rmi -f \$(docker images -q loginapp:${env.BUILD_ID})"
+        sh "docker rmi -f  \$(docker images -q ${ecrRepository}:${env.BUILD_ID})"
     }
 }
