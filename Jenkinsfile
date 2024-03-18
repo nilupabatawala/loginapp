@@ -1,4 +1,8 @@
-node {
+pipeline {
+    agent any
+    environment {
+        DOCKER_BUILDKIT = '1'
+    }
     def app
 
     stage('Checkout') {
