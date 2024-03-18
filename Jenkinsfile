@@ -8,6 +8,7 @@ pipeline {
     }
         stage('Build Docker Image') {
             steps {
+                sh 'docker --version'
                 sh 'docker build -t  loginapp:1 .'
             }
         }
