@@ -11,7 +11,7 @@ node {
         Assuming Dockerfile is at the root of the project directory. 
         Replace 'your-application' with the name of your application/image.
         */
-        sh 'docker build -t loginapp:${env.BUILD_ID} .'
+        sh "docker build -t loginapp:${env.BUILD_ID} ."
     }
 
     stage('Login to AWS ECR') {
@@ -31,8 +31,8 @@ node {
         //def imageTag = "${ecrRepository}:${env.BUILD_ID}"
         //app.tag(imageTag).push()
 
-        sh 'docker tag loginapp:${env.BUILD_ID} 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}'
-        sh 'docker push 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}'
+        sh "docker tag loginapp:${env.BUILD_ID} 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}"
+        sh "docker push 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}"
         }
    
 
