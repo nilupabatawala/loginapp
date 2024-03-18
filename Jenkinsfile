@@ -31,11 +31,10 @@ node {
         //def imageTag = "${ecrRepository}:${env.BUILD_ID}"
         //app.tag(imageTag).push()
 
-        sh "docker tag loginapp:${env.BUILD_ID} 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}"
-        sh "docker push 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}"
+        sh 'docker tag loginapp:${env.BUILD_ID} 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}'
+        sh 'docker push 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}'
         }
-    }
-    }
+   
 
     stage('Clean Up') {
         // Clean up Docker images to prevent the Jenkins node from running out of space
