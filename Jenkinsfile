@@ -39,6 +39,6 @@ node {
     stage('Clean Up') {
         // Clean up Docker images to prevent the Jenkins node from running out of space
         sh "docker rmi -f \$(docker images -q loginapp:${env.BUILD_ID})"
-        sh "docker rmi -f  \$(docker images -q ${ecrRepository}:${env.BUILD_ID})"
+        //sh "docker rmi -f \$(docker images -q ${ecrRepository}:${env.BUILD_ID})"
     }
 }
