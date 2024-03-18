@@ -5,8 +5,9 @@ pipeline {
     }
     stages {
         stage('Checkout') {
-        // Checks out the project from the source control
-        checkout scm
+            steps {// Checks out the project from the source control
+                checkout scm
+            }
     }
         stage('Build Docker Image') {
             steps {
