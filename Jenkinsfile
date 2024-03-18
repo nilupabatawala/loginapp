@@ -54,6 +54,8 @@ node {
 
          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_credentials']]) {
              withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                sh "kubectl apply -f manifests/secret.yaml"
+                sh "kubectl apply -f manifests/services.yaml"
                 sh "kubectl apply -f manifests/deployment.yaml"
 
             }
