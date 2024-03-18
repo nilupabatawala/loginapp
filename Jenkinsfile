@@ -1,9 +1,10 @@
-pipeline {
-    agent any
+node {
+    def app
+    
     environment {
         DOCKER_BUILDKIT = '1'
     }
-    def app
+    
 
     stage('Checkout') {
         // Checks out the project from the source control
