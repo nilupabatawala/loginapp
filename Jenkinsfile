@@ -1,5 +1,5 @@
 node {
-    
+    def ecrRepository
 
     stage('Checkout') {
         // Checks out the project from the source control
@@ -27,7 +27,7 @@ node {
         /* 
         Replace 'your-aws-account-id.dkr.ecr.your-region.amazonaws.com/your-repo-name' with your ECR repository path.
         */
-        def ecrRepository = '424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp'
+        ecrRepository = '424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp'
         //def imageTag = "${ecrRepository}:${env.BUILD_ID}"
         //app.tag(imageTag).push()
 
