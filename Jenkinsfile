@@ -12,6 +12,7 @@ pipeline {
     }
         stage('Build Docker Image') {
             steps {
+                sh 'docker buildx version'
                 sh 'docker buildx build -t  loginapp:1 .'
             }
         }
