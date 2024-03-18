@@ -20,7 +20,7 @@ node {
         Replace 'aws_access_key_id', 'aws_secret_access_key', and 'your-region' with your AWS credentials and region.
         */
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_credentials']]) {
-            sh 'eval $(aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 424416207406.dkr.ecr.eu-north-1.amazonaws.com)'
+            sh 'aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 424416207406.dkr.ecr.eu-north-1.amazonaws.com'
         }
     }
 
