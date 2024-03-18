@@ -12,7 +12,7 @@ pipeline {
     }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t loginapp:1 .'
+                sh 'docker buildx build -t  loginapp:1 .'
             }
         }
     }
