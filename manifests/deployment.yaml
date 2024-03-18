@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: logindep
+  name: logindep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: logindep
+  template:
+    metadata:
+      labels:
+        app: logindep
+    spec:
+      containers:
+      - image: 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}
+        name: sample
+      imagePullSecrets:
+      - name: helm-secret 

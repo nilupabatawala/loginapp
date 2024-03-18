@@ -41,4 +41,12 @@ node {
         sh "docker rmi -f \$(docker images -q loginapp:${env.BUILD_ID})"
         //sh "docker rmi -f \$(docker images -q ${ecrRepository}:${env.BUILD_ID})"
     }
+
+     stage('Deploy to EKS') {
+
+        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+        sh "kubectl apply -f manifests/deployment.yaml"
+
+        }
+    }
 }
