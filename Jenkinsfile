@@ -42,9 +42,12 @@ node {
         //sh "docker rmi -f \$(docker images -q ${ecrRepository}:${env.BUILD_ID})"
     }
 
-    stage('Update yaml') {            
+    stage('Update yaml') {     
+
+         // Define the file path
+        def deploymentFilePath = 'manifests/deployment-file.yaml'       
         // Use sed to replace $IMG_TAG with Jenkins BUILD_ID in the deployment file
-        sh "sed -i 's/\\\$IMG_TAG/${env.BUILD_ID}/g' manifests/deployment-file.yaml"
+        sh "sed -i 's/\\\$IMG_TAG/${env.BUILD_ID}/g' ${deploymentFilePath}"
     }
 
     stage('Deploy to EKS') {
