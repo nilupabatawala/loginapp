@@ -49,7 +49,7 @@ node {
         sh "sed -i 's/\\\$IMG_TAG/${env.BUILD_ID}/g' ${deploymentFilePath}"
     }
 
-     stage('Deploy to EKS') {
+    stage('Deploy to EKS') {
 
          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_credentials']]) {
              withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
