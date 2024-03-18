@@ -1,5 +1,4 @@
 node {
-    def app
     
 
     stage('Checkout') {
@@ -12,7 +11,7 @@ node {
         Assuming Dockerfile is at the root of the project directory. 
         Replace 'your-application' with the name of your application/image.
         */
-        app = docker.build("${env.BUILD_ID}")
+        sh 'docker build -t loginapp:${env.BUILD_ID}
     }
 
     stage('Login to AWS ECR') {
@@ -28,9 +27,14 @@ node {
         /* 
         Replace 'your-aws-account-id.dkr.ecr.your-region.amazonaws.com/your-repo-name' with your ECR repository path.
         */
-        def ecrRepository = '424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp'
-        def imageTag = "${ecrRepository}:${env.BUILD_ID}"
-        app.tag(imageTag).push()
+        //def ecrRepository = '424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp'
+        //def imageTag = "${ecrRepository}:${env.BUILD_ID}"
+        //app.tag(imageTag).push()
+
+        sh "docker tag loginapp:${env.BUILD_ID} 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}"
+        sh "docker push 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:${env.BUILD_ID}"
+        }
+    }
     }
 
     stage('Clean Up') {
