@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_BUILDKIT = '1'
+        DOCKER_CLI_EXPERIMENTAL= 'enabled'
     }
     stages {
         stage('Checkout') {
@@ -11,7 +12,7 @@ pipeline {
     }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t loginapp:1 .'
+                sh 'docker buildx build -t loginapp:1 .'
             }
         }
     }
