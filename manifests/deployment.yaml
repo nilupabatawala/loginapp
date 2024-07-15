@@ -18,4 +18,4 @@ spec:
       - image: 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:30
         name: sample
       imagePullSecrets:
-      - name: helm-secret 
+      - name: ecr-secret 
