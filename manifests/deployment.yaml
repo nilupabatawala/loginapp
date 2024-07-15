@@ -15,7 +15,7 @@ spec:
         app: logindep
     spec:
       containers:
-      - image: 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:$IMG_TAG
+      - image: 424416207406.dkr.ecr.eu-north-1.amazonaws.com/loginapp:30
         name: sample
       imagePullSecrets:
       - name: helm-secret 
